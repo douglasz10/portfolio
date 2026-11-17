@@ -1,0 +1,758 @@
+<!doctype html><html lang="pt-BR" data-theme="dark"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+/* ===== Dark Tech Premium — camada visual adicional ===== */
+:root {
+  --bg: #080d19;
+  --surface: #101a2c;
+  --fg: #edf3ff;
+  --muted: #9aa9c2;
+  --line: rgba(148, 170, 205, .17);
+  --accent: #5b7cff;
+  --accent-fg: #fff;
+  --accent-soft: rgba(91, 124, 255, .15);
+  --pass: #40d6a0;
+  --glow: rgba(65, 105, 255, .16);
+}
+:root[data-theme="light"] {
+  --bg: #f3f6fc;
+  --surface: #fff;
+  --fg: #101a2d;
+  --muted: #5e6c84;
+  --line: rgba(35, 57, 91, .15);
+  --accent: #3157e8;
+  --accent-fg: #fff;
+  --accent-soft: rgba(49, 87, 232, .10);
+  --pass: #07875f;
+  --glow: rgba(65, 105, 255, .09);
+  color-scheme: light;
+}
+html { scroll-padding-top: 96px; }
+body {
+  position: relative;
+  overflow-x: hidden;
+  background:
+    radial-gradient(ellipse at 12% 8%, var(--glow), transparent 34rem),
+    radial-gradient(ellipse at 92% 34%, rgba(24, 190, 170, .055), transparent 28rem),
+    var(--bg);
+  transition: background-color .3s ease, color .3s ease;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: .18;
+  background-image: linear-gradient(rgba(130,155,200,.055) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(130,155,200,.055) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: linear-gradient(to bottom, black, transparent 78%);
+}
+.wrap { max-width: 1180px; }
+.scroll-progress {
+  position: fixed; inset: 0 0 auto; height: 3px; z-index: 1000;
+  background: transparent;
+}
+.scroll-progress span {
+  display: block; width: 0; height: 100%;
+  background: linear-gradient(90deg, #4f72ff, #44dfbd);
+  box-shadow: 0 0 14px rgba(79,114,255,.7);
+}
+.top {
+  position: sticky; top: 10px; z-index: 100;
+  margin-top: 8px; padding: 13px 16px;
+  border: 1px solid var(--line); border-radius: 15px;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 10px 35px rgba(0,0,0,.10);
+}
+.brand { letter-spacing: -.04em; }
+.nav { gap: 7px 19px; font-size: .88rem; }
+.nav a { transition: color .2s ease; }
+.nav a.active { color: var(--accent); }
+.header-actions { display:flex; align-items:center; gap:12px; }
+.availability {
+  display:inline-flex; align-items:center; gap:8px; color:var(--muted);
+  font-size:.78rem; white-space:nowrap;
+}
+.availability i {
+  width:7px; height:7px; border-radius:50%; background:var(--pass);
+  box-shadow:0 0 0 4px color-mix(in srgb, var(--pass) 15%, transparent);
+}
+.theme-toggle {
+  width:38px; height:38px; border:1px solid var(--line); border-radius:11px;
+  background:var(--surface); color:var(--fg); cursor:pointer; font-size:1.15rem;
+  transition:transform .2s ease, border-color .2s ease;
+}
+.theme-toggle:hover { transform:translateY(-2px); border-color:var(--accent); }
+.hero { position:relative; padding-top:clamp(58px, 9vw, 112px); }
+.eyebrow {
+  display:flex; align-items:center; gap:10px; margin-bottom:22px;
+  color:var(--accent); font-size:.76rem; font-weight:700;
+  letter-spacing:.16em;
+}
+.eyebrow span { width:24px; height:1px; background:var(--accent); }
+.hero h1 {
+  max-width: 10.5em;
+  background:linear-gradient(112deg, var(--fg) 15%, #9fb4ff 65%, #65d9c3 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.hero-lead { max-width: 61ch; }
+.hero-meta {
+  display:flex; flex-wrap:wrap; gap:10px 24px; margin-top:25px;
+  color:var(--muted); font-size:.82rem;
+}
+.hero-meta span { display:flex; align-items:center; gap:8px; }
+.hero-meta span::before { content:""; width:5px; height:5px; border-radius:50%; background:var(--accent); }
+.btn { border-radius:10px; transition:transform .2s ease, box-shadow .2s ease, background .2s ease; }
+.btn:hover { transform:translateY(-2px); box-shadow:0 10px 25px rgba(0,0,0,.16); }
+.btn.primary { box-shadow:0 8px 24px rgba(70,100,255,.22); }
+.pipe {
+  border-radius:17px; background:linear-gradient(145deg, color-mix(in srgb, var(--surface) 96%, var(--accent)), var(--surface));
+  box-shadow:0 20px 60px rgba(0,0,0,.12);
+}
+.stage .rail { background:color-mix(in srgb, var(--line) 75%, transparent); }
+.stage .bar { box-shadow:0 0 12px color-mix(in srgb, var(--pass) 35%, transparent); }
+.sec { scroll-margin-top:100px; }
+.sec h2 { letter-spacing:-.045em; }
+.sec .intro { line-height:1.7; }
+.res {
+  padding:26px 22px; margin-bottom:10px; border:1px solid var(--line);
+  border-radius:15px; background:color-mix(in srgb, var(--surface) 72%, transparent);
+  transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.res:first-child { border-top:1px solid var(--line); padding-top:26px; }
+.res:hover { transform:translateY(-3px); border-color:color-mix(in srgb, var(--accent) 55%, var(--line)); box-shadow:0 16px 35px rgba(0,0,0,.10); }
+.res .fig { text-shadow:0 0 30px color-mix(in srgb, var(--accent) 25%, transparent); }
+.job {
+  padding:30px 22px; margin-bottom:10px; border:1px solid var(--line);
+  border-radius:15px; background:color-mix(in srgb, var(--surface) 65%, transparent);
+  transition:border-color .2s ease, transform .2s ease;
+}
+.job:first-child { border-top:1px solid var(--line); padding-top:30px; }
+.job:hover { border-color:color-mix(in srgb, var(--accent) 50%, var(--line)); transform:translateX(3px); }
+.job .when strong { color:var(--accent); }
+.dl .row, .contact .row { border-color:var(--line); }
+.dl .row { padding-block:19px; }
+.ia-list li { padding:17px 18px; border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:0 12px 12px 0; background:color-mix(in srgb, var(--surface) 70%, transparent); }
+.contact .row { padding-block:18px; }
+.copy { border-radius:8px; transition:border-color .2s ease, transform .2s ease; }
+.copy:hover { transform:translateY(-1px); }
+.foot { padding-bottom:12px; }
+.back-to-top {
+  position:fixed; right:24px; bottom:24px; z-index:90; width:44px; height:44px;
+  border:1px solid var(--line); border-radius:13px; background:var(--surface);
+  color:var(--fg); font-size:1.25rem; cursor:pointer; opacity:0; pointer-events:none;
+  transform:translateY(10px); transition:opacity .2s ease, transform .2s ease, border-color .2s ease;
+  box-shadow:0 8px 24px rgba(0,0,0,.18);
+}
+.back-to-top.visible { opacity:1; pointer-events:auto; transform:translateY(0); }
+.back-to-top:hover { border-color:var(--accent); }
+.reveal { opacity:0; transform:translateY(22px); transition:opacity .65s ease, transform .65s cubic-bezier(.2,.7,.2,1); }
+.reveal.in-view { opacity:1; transform:translateY(0); }
+@media (min-width:860px) {
+  .hero h1 { max-width:10em; }
+}
+@media (max-width:760px) {
+  .top { top:5px; }
+  .header-actions { margin-left:auto; }
+  .availability { font-size:0; gap:0; }
+  .availability i { width:8px; height:8px; }
+  .hero-meta { gap:8px 16px; }
+  .res, .job { padding-inline:16px; }
+}
+@media (max-width:520px) {
+  .top { align-items:center; }
+  .nav { order:3; width:100%; overflow-x:auto; flex-wrap:nowrap; padding-bottom:3px; }
+  .nav a { white-space:nowrap; }
+  .brand { font-size:1.05rem; }
+  .hero h1 { font-size:clamp(2.7rem, 14vw, 4.4rem); }
+  .back-to-top { right:15px; bottom:15px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+  .reveal { opacity:1; transform:none; }
+}
+
+</style><title>Douglas Gonçalves Ferreira | QA Master &amp; Quality Engineering</title>
+</head><body>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: coluna editorial alinhada à esquerda. Hero com título gigante e uma esteira de pipeline que roda uma vez ao carregar. Resto sóbrio, em linhas finas. */
+:root {
+  --bg: #EDF0F4;
+  --surface: #F8FAFC;
+  --fg: #0D1626;
+  --muted: #52607A;
+  --line: #CFD7E2;
+  --accent: #2340E8;
+  --accent-fg: #FFFFFF;
+  --accent-soft: #DCE3FF;
+  --pass: #0E8F63;
+  --font-display: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0A111F;
+    --surface: #101A2D;
+    --fg: #E6ECF7;
+    --muted: #93A1BC;
+    --line: #223049;
+    --accent: #8C9BFF;
+    --accent-fg: #0A111F;
+    --accent-soft: #1A2547;
+    --pass: #3ED598;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0A111F;
+  --surface: #101A2D;
+  --fg: #E6ECF7;
+  --muted: #93A1BC;
+  --line: #223049;
+  --accent: #8C9BFF;
+  --accent-fg: #0A111F;
+  --accent-soft: #1A2547;
+  --pass: #3ED598;
+  color-scheme: dark;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font: 400 17px/1.6 var(--font-body);
+  padding-block: 8px 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1120px; margin-inline: auto; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; }
+p { margin: 0; }
+
+/* Cabeçalho */
+.top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px 32px; padding-block: 20px; }
+.brand { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; letter-spacing: -0.01em; text-decoration: none; }
+.nav { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 0.95rem; color: var(--muted); }
+.nav a { text-decoration: none; padding-block: 2px; }
+.nav a:hover { color: var(--fg); text-decoration: underline; text-underline-offset: 5px; }
+
+/* Hero */
+.hero { padding-block: clamp(40px, 8vw, 96px) clamp(40px, 7vw, 80px); }
+.hero h1 {
+  font-weight: 800;
+  font-variation-settings: "wdth" 78;
+  font-size: clamp(2.9rem, 9.4vw, 7.6rem);
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  max-width: 11em;
+}
+.hero-lead { margin-top: clamp(24px, 4vw, 40px); max-width: 58ch; font-size: clamp(1.05rem, 1.6vw, 1.25rem); color: var(--muted); }
+.hero-lead strong { color: var(--fg); font-weight: 600; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.btn {
+  display: inline-flex; align-items: center; padding: 0.8em 1.35em;
+  border: 1.5px solid var(--fg); border-radius: 8px;
+  font-weight: 600; font-size: 0.98rem; text-decoration: none; color: var(--fg);
+  background: transparent; cursor: pointer; font-family: inherit;
+}
+.btn:hover { background: var(--fg); color: var(--bg); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+.btn.primary:hover { filter: brightness(1.08); background: var(--accent); color: var(--accent-fg); }
+
+/* Esteira de pipeline */
+.pipe { margin-top: clamp(40px, 6vw, 72px); background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: clamp(16px, 3vw, 28px); }
+.stages { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 20px 18px; }
+.stage { min-width: 0; }
+.stage .rail { height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; }
+.stage .bar { display: block; height: 100%; background: var(--pass); transform-origin: left; transform: scaleX(1); transition: transform 0.4s ease, background-color 0.2s; }
+.stage h3 { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; margin-top: 12px; }
+.stage .what { font-size: 0.88rem; line-height: 1.45; color: var(--muted); margin-top: 4px; }
+.stage .state { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; font-weight: 600; color: var(--pass); margin-top: 10px; }
+.stage .state::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.stage.pending .bar { transform: scaleX(0); }
+.stage.pending .state { color: var(--muted); }
+.stage.running .bar { transform: scaleX(0.55); background: var(--accent); }
+.stage.running .state { color: var(--accent); }
+.pipe-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 0.92rem; color: var(--muted); }
+.pipe-foot .sum { color: var(--pass); font-weight: 600; }
+
+/* Seções */
+.sec { border-top: 1px solid var(--line); padding-block: clamp(48px, 8vw, 96px); display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px 48px; }
+.sec > * { min-width: 0; }
+.sec h2 { font-weight: 700; font-variation-settings: "wdth" 85; font-size: clamp(2rem, 4.4vw, 3.1rem); line-height: 1.02; letter-spacing: -0.025em; }
+.sec .intro { color: var(--muted); margin-top: 14px; max-width: 34ch; font-size: 1rem; }
+@media (min-width: 860px) {
+  .sec { grid-template-columns: 280px minmax(0, 1fr); }
+}
+
+/* Resultados */
+.res { border-top: 1px solid var(--line); padding-block: 24px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px 32px; }
+.res:first-child { border-top: 0; padding-top: 0; }
+.res .fig { font-family: var(--font-display); font-weight: 800; font-variation-settings: "wdth" 80; font-size: clamp(2.6rem, 6vw, 4.2rem); line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; color: var(--accent); }
+.res p { max-width: 56ch; }
+.res .detail { color: var(--muted); font-size: 0.98rem; margin-top: 6px; }
+@media (min-width: 700px) {
+  .res { grid-template-columns: 220px minmax(0, 1fr); }
+}
+.bars { margin-top: 18px; display: grid; gap: 8px; max-width: 520px; }
+.barrow { display: grid; grid-template-columns: 52px minmax(0, 1fr) 84px; gap: 12px; align-items: center; font-size: 0.88rem; color: var(--muted); }
+.barrow .val { color: var(--fg); font-weight: 600; font-variant-numeric: tabular-nums; }
+.track { position: relative; height: 12px; background: var(--accent-soft); border-radius: 3px; }
+.fill { height: 100%; border-radius: 3px; transform-origin: left; }
+.fill.before { background: var(--muted); }
+.fill.after { background: var(--accent); }
+.scale-note { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+.cov { margin-top: 20px; max-width: 520px; }
+.cov .track { height: 12px; margin-top: 26px; }
+.cov .tick { position: absolute; left: 80%; top: -8px; width: 2px; height: 28px; background: var(--fg); }
+.cov .tick-label { position: absolute; left: 80%; top: -30px; transform: translateX(-50%); font-size: 0.8rem; font-weight: 600; white-space: nowrap; }
+.cov .base-label { margin-top: 8px; font-size: 0.82rem; color: var(--muted); }
+.play .fill { animation: grow 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
+.play .fill.after { animation-delay: 0.25s; }
+@keyframes grow { from { transform: scaleX(0); } }
+
+/* Experiência */
+.jobs { display: grid; }
+.job { border-top: 1px solid var(--line); padding-block: 28px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px 40px; }
+.job:first-child { border-top: 0; padding-top: 0; }
+.job .when { color: var(--muted); font-size: 0.95rem; }
+.job .when strong { display: block; color: var(--fg); font-weight: 600; font-size: 1.05rem; }
+.job h3 { font-size: 1.55rem; font-weight: 700; letter-spacing: -0.015em; line-height: 1.15; }
+.job ul { margin: 14px 0 0; padding-left: 1.15em; display: grid; gap: 8px; max-width: 70ch; }
+.job li::marker { color: var(--accent); }
+@media (min-width: 760px) {
+  .job { grid-template-columns: 200px minmax(0, 1fr); }
+}
+
+/* Competências e formação */
+.dl { display: grid; margin: 0; }
+.dl .row { border-top: 1px solid var(--line); padding-block: 16px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px 32px; }
+.dl .row:first-child { border-top: 0; padding-top: 0; }
+.dl dt { font-weight: 600; }
+.dl dd { margin: 0; color: var(--muted); max-width: 62ch; }
+.dl dd b { color: var(--fg); font-weight: 600; }
+@media (min-width: 700px) {
+  .dl .row { grid-template-columns: 210px minmax(0, 1fr); }
+}
+
+/* IA */
+.ia-list { margin: 20px 0 0; padding: 0; list-style: none; display: grid; gap: 18px; max-width: 64ch; }
+.ia-list li { padding-left: 18px; border-left: 3px solid var(--accent); }
+.ia-list b { display: block; font-weight: 600; }
+.ia-list span { color: var(--muted); }
+.lead { max-width: 60ch; font-size: 1.1rem; }
+
+/* Contato */
+.contact { display: grid; }
+.contact .row { border-top: 1px solid var(--line); padding-block: 14px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 20px; }
+.contact .row:first-child { border-top: 0; padding-top: 0; }
+.contact .k { color: var(--muted); min-width: 90px; }
+.contact .v { font-weight: 600; font-size: 1.1rem; overflow-wrap: anywhere; flex: 1 1 220px; min-width: 0; }
+.contact .v a { text-underline-offset: 4px; }
+.copy { font: inherit; font-size: 0.88rem; font-weight: 600; padding: 0.4em 0.9em; border: 1.5px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 6px; cursor: pointer; }
+.copy:hover { border-color: var(--accent); }
+
+.foot { border-top: 1px solid var(--line); padding-top: 24px; color: var(--muted); font-size: 0.9rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+
+/* Telas pequenas */
+@media (max-width: 760px) {
+  .stages { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 460px) {
+  .stages { gap: 20px 12px; }
+  .stage .what { font-size: 0.82rem; }
+  .barrow { grid-template-columns: 44px minmax(0, 1fr) 76px; gap: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .stage .bar { transition: none; }
+  .play .fill { animation: none; }
+}
+</style>
+
+<div class="wrap">
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+  <header class="top">
+    <a class="brand" href="#inicio">Douglas Gonçalves Ferreira</a>
+    <nav class="nav" aria-label="Seções">
+      <a href="#resultados">Resultados</a>
+      <a href="#experiencia">Experiência</a>
+      <a href="#competencias">Competências</a>
+      <a href="#ia">IA na qualidade</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="header-actions">
+      <span class="availability"><i></i> Aberto a oportunidades</span>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar tema claro e escuro" title="Alternar tema">☼</button>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+        <p class="eyebrow"><span></span> QA MASTER · QUALITY ENGINEERING · TEST AUTOMATION</p>
+      <h1>Qualidade desde o primeiro requisito.</h1>
+      <p class="hero-lead">
+        Sou <strong>Engenheiro de Qualidade de Software</strong> com mais de 20 anos em testes e automação.
+        Atuei em projetos financeiros, de e-commerce, educação e no setor farmacêutico regulado,
+        da análise de requisitos até a entrega.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="#experiencia">Ver experiência</a>
+        <a class="btn" href="#contato">Falar comigo</a>
+      </div>
+
+      <div class="hero-meta"><span>20+ anos de experiência</span><span>Qualidade em todo o ciclo de entrega</span><span>Campinas · Brasil</span></div>
+      <div class="pipe" aria-label="Etapas do ciclo de entrega em que atuo">
+        <div class="stages" id="stages">
+          <div class="stage ok"><div class="rail"><span class="bar"></span></div><h3>Requisitos</h3><p class="what">Critérios de aceite claros antes de codar</p><p class="state"><span class="st">passou</span></p></div>
+          <div class="stage ok"><div class="rail"><span class="bar"></span></div><h3>Planejamento</h3><p class="what">Estratégia de testes e riscos</p><p class="state"><span class="st">passou</span></p></div>
+          <div class="stage ok"><div class="rail"><span class="bar"></span></div><h3>Código</h3><p class="what">Treino de devs e práticas preventivas</p><p class="state"><span class="st">passou</span></p></div>
+          <div class="stage ok"><div class="rail"><span class="bar"></span></div><h3>CI/CD</h3><p class="what">Checklist de qualidade no pipeline</p><p class="state"><span class="st">passou</span></p></div>
+          <div class="stage ok"><div class="rail"><span class="bar"></span></div><h3>Testes</h3><p class="what">Playwright, Cypress, Appium e API</p><p class="state"><span class="st">passou</span></p></div>
+          <div class="stage ok"><div class="rail"><span class="bar"></span></div><h3>Entrega</h3><p class="what">Homologação e indicadores</p><p class="state"><span class="st">passou</span></p></div>
+        </div>
+        <div class="pipe-foot">
+          <span>Shift Left: atuo já nos requisitos e no planejamento, para evitar defeitos antes de ter que encontrá-los.</span>
+          <span class="sum" id="sum">6 de 6 etapas verdes</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="resultados">
+      <div>
+        <h2>Resultados</h2>
+        <p class="intro">Números dos projetos em que atuei na CI&amp;T.</p>
+      </div>
+      <div>
+        <article class="res">
+          <div class="fig">4–5 dias</div>
+          <div>
+            <p>Ciclo de regressão, que antes levava 2 semanas.</p>
+            <p class="detail">Veio da ampliação da automação E2E e da priorização dos cenários críticos.</p>
+            <div class="bars js-play" role="img" aria-label="Ciclo de regressão: 2 semanas antes, 4 a 5 dias depois">
+              <div class="barrow"><span>Antes</span><div class="track"><div class="fill before" style="width:100%"></div></div><span class="val">2 semanas</span></div>
+              <div class="barrow"><span>Depois</span><div class="track"><div class="fill after" style="width:32%"></div></div><span class="val">4–5 dias</span></div>
+              <p class="scale-note">Barras em escala, com 2 semanas = 14 dias.</p>
+            </div>
+          </div>
+        </article>
+        <article class="res">
+          <div class="fig">+40%</div>
+          <div>
+            <p>Cobertura de testes E2E, aproximadamente.</p>
+            <p class="detail">Automações para Web e Mobile (Android e iOS) em produtos que ainda não tinham cobertura automatizada, começando pelos cenários mais críticos de cada cliente.</p>
+          </div>
+        </article>
+        <article class="res">
+          <div class="fig">80%</div>
+          <div>
+            <p>Meta de cobertura definida para um cliente sem QA estruturado.</p>
+            <p class="detail">Montei a área do zero: medi o ponto de partida em 30% e planejei a subida até a meta.</p>
+            <div class="cov js-play" role="img" aria-label="Cobertura de testes: ponto de partida de 30 por cento e meta de 80 por cento">
+              <div class="track"><div class="fill after" style="width:30%"></div><span class="tick"></span><span class="tick-label">meta 80%</span></div>
+              <p class="base-label">Ponto de partida: 30%</p>
+            </div>
+          </div>
+        </article>
+        <article class="res">
+          <div class="fig">12+</div>
+          <div>
+            <p>Desenvolvedores treinados em automação de testes.</p>
+            <p class="detail">Treinamentos também em Shift Left e cultura de qualidade, com documentação AS IS / TO BE e checkpoints de evolução.</p>
+          </div>
+        </article>
+        <article class="res">
+          <div class="fig">6+</div>
+          <div>
+            <p>Squads atendidos em 2 clientes, nos segmentos financeiro e educacional.</p>
+            <p class="detail">Como QA Master, fui a referência de qualidade e conduzi diagnósticos de maturidade de QA com critérios definidos.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="sec" id="experiencia">
+      <div>
+        <h2>Experiência</h2>
+        <p class="intro">Mais de 20 anos, de fábrica de software a squads de produtos digitais.</p>
+      </div>
+      <div class="jobs">
+        <article class="job">
+          <div class="when"><strong>CI&amp;T</strong>11/2025 a 08/2026<br>Campinas</div>
+          <div>
+            <h3>QA Master</h3>
+            <ul>
+              <li>Referência de qualidade em 2 clientes e 6+ squads, com iniciativas de maturidade de QA, padronização de processos e cultura de qualidade.</li>
+              <li>Diagnósticos do nível de maturidade de QA, apontando lacunas em processos, padrões e automação e apoiando as ações de evolução.</li>
+              <li>QA estruturado do zero em um cliente sem cobertura definida: baseline de 30%, meta de 80% e treinamento de 12+ desenvolvedores.</li>
+              <li>Checklist de qualidade integrado ao pipeline de CI/CD, com validação de código, acompanhamento de cobertura e execução de testes sob demanda.</li>
+              <li>POCs com Claude Code para gerar testes E2E e de contrato com Spring Cloud Contract, e Skills para geração de testes, revisão de código e ESLint.</li>
+              <li>Indicadores e painéis de qualidade com agilistas, análises de causa-raiz de defeitos críticos e mentoria técnica.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="job">
+          <div class="when"><strong>CI&amp;T</strong>04/2017 a 11/2025<br>Campinas</div>
+          <div>
+            <h3>Engenheiro de Software, QA Sênior</h3>
+            <ul>
+              <li>Engenheiro de qualidade em 6+ squads de e-commerce, financeiro e educação, evoluindo da atuação técnica para referência em automação, estratégia de testes e mentoria.</li>
+              <li>Frameworks de automação Web e Mobile com Playwright, Cypress, Appium e Selenium, usando BDD e Gherkin para alinhar QA, desenvolvimento e negócio.</li>
+              <li>Execução em diferentes navegadores e dispositivos com BrowserStack e LambdaTest.</li>
+              <li>Testes de API com Postman e SoapUI, rodando nos pipelines de Jenkins e Azure DevOps.</li>
+              <li>Painéis de métricas com Looker, Zephyr, Jira e SonarQube, usados por gestão, times e executivos no ciclo PDCA com clientes.</li>
+              <li>Frameworks E2E e soluções de acessibilidade com IA generativa (Claude, ChatGPT e Gemini) na plataforma Flow, com prompts compartilhados com times e clientes.</li>
+              <li>Mentoria de QAs da CI&amp;T e de clientes e documentação de massa de dados com SQL e DBeaver.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="job">
+          <div class="when"><strong>Grupo InterPlayers</strong>05/2009 a 03/2017<br>Campinas</div>
+          <div>
+            <h3>Analista de Testes</h3>
+            <ul>
+              <li>Projetos de alta criticidade para laboratórios farmacêuticos, em ambiente regulado com exigência de rigor, rastreabilidade e documentação.</li>
+              <li>Testes funcionais, exploratórios e de compatibilidade em aplicações Web, Mobile e Tablet/iPad.</li>
+              <li>Análise de requisitos e regras de negócio com os clientes, transformadas em casos de teste claros e rastreáveis.</li>
+              <li>Planos de teste, documentação de homologação, relatórios de evidências e gestão de defeitos com Mantis e Test Manager.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="job">
+          <div class="when"><strong>Facti</strong>02/2005 a 05/2008<br>Campinas, SP</div>
+          <div>
+            <h3>Analista de Software</h3>
+            <ul>
+              <li>Validação de software e imagens de Windows e Linux para notebooks e desktops HP, em fábrica de alto volume, com testes de compatibilidade, funcionalidade e desempenho.</li>
+              <li>Testes de localização e tradução, auditorias de qualidade na fábrica e scripts de teste com registro e acompanhamento de defeitos.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="sec" id="competencias">
+      <div>
+        <h2>Competências</h2>
+        <p class="intro">As ferramentas que uso no dia a dia, agrupadas por função.</p>
+      </div>
+      <dl class="dl">
+        <div class="row"><dt>Automação de testes</dt><dd><b>Playwright</b>, <b>Cypress</b>, <b>Appium</b>, Selenium, WebdriverIO, Tosca</dd></div>
+        <div class="row"><dt>Linguagens</dt><dd>Python, Java, JavaScript e TypeScript</dd></div>
+        <div class="row"><dt>API e contrato</dt><dd>Postman, SoapUI, Swagger, Spring Cloud Contract</dd></div>
+        <div class="row"><dt>Desempenho</dt><dd>k6, JMeter</dd></div>
+        <div class="row"><dt>CI/CD e versionamento</dt><dd>Jenkins, Azure DevOps, Git</dd></div>
+        <div class="row"><dt>Gestão de qualidade</dt><dd>Jira, Zephyr, SonarQube, Looker, TestPlan, BrowserStack, LambdaTest</dd></div>
+        <div class="row"><dt>Observabilidade e dados</dt><dd>Grafana, Dynatrace, Power BI, SQL, DBeaver</dd></div>
+        <div class="row"><dt>Práticas</dt><dd>Estratégia e maturidade de QA, Shift Left, testes E2E, exploratórios, de acessibilidade e de regressão, análise de causa-raiz, métricas de qualidade, gestão de defeitos, mentoria técnica</dd></div>
+      </dl>
+    </section>
+
+    <section class="sec" id="ia">
+      <div>
+        <h2>IA na qualidade</h2>
+        <p class="intro">Usada em provas de conceito, com revisão humana em tudo que sai.</p>
+      </div>
+      <div>
+        <p class="lead">Uso Claude Code, Claude, ChatGPT, GitHub Copilot e Gemini para ganhar produtividade e padronização na escrita e na revisão de testes.</p>
+        <ul class="ia-list">
+          <li><b>Testes E2E e de contrato com Claude Code</b><span>POCs que geram testes E2E e testes de contrato com Spring Cloud Contract, revisados por pessoas antes de entrar no pipeline.</span></li>
+          <li><b>Skills para o time</b><span>Skills estruturadas para geração de testes, revisão de código, ESLint e padronização de boas práticas.</span></li>
+          <li><b>Acessibilidade e frameworks na plataforma Flow</b><span>Frameworks E2E e soluções de acessibilidade com IA generativa, com prompts disponibilizados para times e clientes.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sec" id="formacao">
+      <div>
+        <h2>Formação e certificações</h2>
+      </div>
+      <dl class="dl">
+        <div class="row"><dt>Pós-graduação</dt><dd>Engenharia da Qualidade de Software, Senac São Paulo (2016 a 2017)</dd></div>
+        <div class="row"><dt>Graduação</dt><dd>Bacharelado em Ciência da Computação, Anhanguera Educacional (2005 a 2008)</dd></div>
+        <div class="row"><dt>Técnico</dt><dd>Informática, Colégio Politécnico Bento Quirino (2002 a 2003)</dd></div>
+        <div class="row"><dt>Anthropic (2026)</dt><dd>Claude 101, Claude Code 101, Claude Code in Action, Introduction to Subagents, Introduction to Agent Skills</dd></div>
+        <div class="row"><dt>OpenAI (2026)</dt><dd>AI Foundations, Applied AI Foundations, Agents and Workflows</dd></div>
+        <div class="row"><dt>LinkedIn Learning (2026)</dt><dd>Agentic AI Fundamentals: Architectures, Frameworks, and Applications</dd></div>
+        <div class="row"><dt>Tricentis (2023)</dt><dd>Tosca Fundamentals, Automating Web Application Testing (AS1)</dd></div>
+        <div class="row"><dt>LambdaTest (2022)</dt><dd>Cypress 101 Certification</dd></div>
+        <div class="row"><dt>Idiomas</dt><dd>Português nativo, inglês intermediário</dd></div>
+      </dl>
+    </section>
+
+    <section class="sec" id="contato">
+      <div>
+        <h2>Contato</h2>
+        <p class="intro">Vamos conversar sobre vagas de QA, automação e estratégia de qualidade.</p>
+      </div>
+      <div class="contact">
+        <div class="row"><span class="k">E-mail</span><span class="v" id="mail">douglas.ferreira77@gmail.com</span><button class="copy" type="button" data-copy="douglas.ferreira77@gmail.com">Copiar</button></div>
+        <div class="row"><span class="k">LinkedIn</span><span class="v"><a href="https://www.linkedin.com/in/douglas-gon%C3%A7alves-ferreira-qa/" target="_blank" rel="noopener">linkedin.com/in/douglas-gonçalves-ferreira-qa</a></span></div>
+        <div class="row"><span class="k">GitHub</span><span class="v"><a href="https://github.com/douglasz10" target="_blank" rel="noopener">github.com/douglasz10</a></span></div>
+        <div class="row"><span class="k">Local</span><span class="v">Campinas, São Paulo, Brasil</span></div>
+      </div>
+    </section>
+  </main>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Voltar ao topo">↑</button>
+  <footer class="foot">
+    <span>Douglas Gonçalves Ferreira</span>
+    <span>Engenheiro de Qualidade de Software</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Esteira: roda uma vez ao carregar. Sem JS ou com movimento reduzido, tudo já aparece verde.
+  var stages = Array.prototype.slice.call(document.querySelectorAll('.stage'));
+  var sum = document.getElementById('sum');
+  function finish() {
+    stages.forEach(function (s) {
+      s.className = 'stage ok';
+      s.querySelector('.st').textContent = 'passou';
+    });
+    if (sum) sum.textContent = stages.length + ' de ' + stages.length + ' etapas verdes';
+  }
+  if (!reduce && stages.length) {
+    stages.forEach(function (s) {
+      s.className = 'stage pending';
+      s.querySelector('.st').textContent = 'aguardando';
+    });
+    if (sum) sum.textContent = 'rodando…';
+    var i = 0;
+    (function next() {
+      if (i > 0) {
+        var prev = stages[i - 1];
+        prev.className = 'stage ok';
+        prev.querySelector('.st').textContent = 'passou';
+      }
+      if (i >= stages.length) {
+        if (sum) sum.textContent = stages.length + ' de ' + stages.length + ' etapas verdes';
+        return;
+      }
+      var cur = stages[i];
+      cur.className = 'stage running';
+      cur.querySelector('.st').textContent = 'rodando';
+      i += 1;
+      setTimeout(next, 420);
+    })();
+    setTimeout(finish, 420 * (stages.length + 2));
+  }
+
+  // Barras dos resultados: animam quando entram na tela, sempre visíveis em repouso.
+  var plays = document.querySelectorAll('.js-play');
+  if (!reduce && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('play');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    Array.prototype.forEach.call(plays, function (el) { io.observe(el); });
+  }
+
+  // Botões de copiar
+  Array.prototype.forEach.call(document.querySelectorAll('.copy'), function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.getAttribute('data-copy');
+      var row = btn.parentNode.querySelector('.v');
+      function done(msg) {
+        var old = btn.textContent;
+        btn.textContent = msg;
+        setTimeout(function () { btn.textContent = old; }, 1600);
+      }
+      function select() {
+        try {
+          var r = document.createRange();
+          r.selectNodeContents(row);
+          var s = window.getSelection();
+          s.removeAllRanges();
+          s.addRange(r);
+        } catch (err) {}
+        done('Selecionado');
+      }
+      try {
+        navigator.clipboard.writeText(text).then(function () { done('Copiado'); }, select);
+      } catch (err) { select(); }
+    });
+  });
+})();
+</script>
+
+
+<script>
+(function () {
+  const root = document.documentElement;
+  const themeButton = document.getElementById('themeToggle');
+  const progress = document.getElementById('scrollProgress');
+  const backToTop = document.getElementById('backToTop');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Alternância de tema; mantém a preferência durante a navegação nesta sessão.
+  if (themeButton) {
+    themeButton.textContent = root.dataset.theme === 'light' ? '☾' : '☼';
+    themeButton.addEventListener('click', function () {
+      const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      themeButton.textContent = next === 'light' ? '☾' : '☼';
+      themeButton.setAttribute('aria-label', next === 'light' ? 'Ativar tema escuro' : 'Ativar tema claro');
+    });
+  }
+
+  // Revelação progressiva das seções e blocos ao entrar na área visível.
+  const revealTargets = document.querySelectorAll('.sec, .res, .job, .pipe, .ia-list li');
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealTargets.forEach(function (el) {
+      el.classList.add('reveal');
+      revealObserver.observe(el);
+    });
+  }
+
+  // Barra de progresso, botão de retorno ao topo e navegação ativa.
+  const navLinks = Array.from(document.querySelectorAll('.nav a[href^="#"]'));
+  const sections = navLinks.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+
+  function onScroll() {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const percent = max > 0 ? (window.scrollY / max) * 100 : 0;
+    if (progress) progress.style.width = percent + '%';
+    if (backToTop) backToTop.classList.toggle('visible', window.scrollY > 550);
+
+    let current = '';
+    sections.forEach(section => {
+      if (section.getBoundingClientRect().top <= 150) current = section.id;
+    });
+    navLinks.forEach(link => {
+      const active = link.getAttribute('href') === '#' + current;
+      link.classList.toggle('active', active);
+      if (active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  if (backToTop) backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }));
+})();
+</script>
+
+</body></html>
